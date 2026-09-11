@@ -4,6 +4,16 @@ A lightweight, zero-dependency local HTTP service bridge that allows modern web 
 
 ---
 
+## 🟢 Verified & Tested Status
+
+- **Operating System:** **Windows 11 (64-bit)** *(Tested & Working)*
+- **Hardware Device:** Mantra MFS100 Optical Fingerprint Scanner (USB) *(Tested & Working)*
+- **Web Browser:** Google Chrome *(Tested & Working with Private Network Access / PNA)*
+- **Target Application:** Maharashtra IGR e-Registration & Leave/License e-Filing (`frmPhotoThumbCapture.aspx`) *(Tested & Working)*
+- **Runtime Environment:** Windows PowerShell 5.1 (32-bit `SysWOW64` subsystem) with native `.NET` interop *(No external Node/npm or Python install required)*
+
+---
+
 ## ⚠️ Disclaimer & Limitation of Liability
 
 > [!IMPORTANT]
@@ -30,7 +40,7 @@ A lightweight, zero-dependency local HTTP service bridge that allows modern web 
 
 ## How This Bridge Works
 
-This bridge binds to port **`8004`** and interfaces directly with the official Mantra native driver assembly (`MANTRA.MFS100.dll` v9.0.2.5) installed on your machine.
+This bridge binds to port **`8004`** and interfaces directly with the official Mantra native driver assembly (`MANTRA.MFS100.dll` v9.0.2.5) included in `.\lib\`.
 
 ```
 +--------------------------------------------------------------------+
@@ -115,8 +125,9 @@ This bridge binds to port **`8004`** and interfaces directly with the official M
 ## Quick Start Guide
 
 ### Prerequisites
-1. Mantra MFS100 fingerprint scanner connected via USB.
-2. Close any desktop test utility (`MANTRA.MFS100.Test.exe`) before starting.
+1. Windows 10 or **Windows 11 (64-bit)**.
+2. Mantra MFS100 fingerprint scanner connected via USB.
+3. Close any desktop test utility (`MANTRA.MFS100.Test.exe`) before starting.
 
 ### Running the Bridge
 Simply double-click **`start.bat`**, or run in PowerShell:
