@@ -6,7 +6,7 @@
 
 A lightweight, zero-dependency local HTTP service bridge that allows modern web browsers (Google Chrome, Microsoft Edge, Brave, Firefox) to communicate directly with the **Mantra MFS100 (L0)** optical fingerprint scanner for web applications and government portals (such as Maharashtra IGR e-filing `frmPhotoThumbCapture.aspx`).
 
-🌐 **Live Web Tester (Multilingual - English / हिन्दी / తెలుగు):** **[https://qalqi.github.io/mfs100client/](https://qalqi.github.io/mfs100client/)**  
+🌐 **Live Web Tester (Multilingual - English / हिन्दी / मराठी / ગુજરાતી / తెలుగు):** **[https://qalqi.github.io/mfs100client/](https://qalqi.github.io/mfs100client/)**  
 🚀 **Developed & Maintained by:** **[qalqi.com](https://qalqi.com)**
 
 ---
@@ -18,6 +18,26 @@ A lightweight, zero-dependency local HTTP service bridge that allows modern web 
 - **Web Browser:** Google Chrome *(Tested & Working with Private Network Access / PNA)*
 - **Target Application:** Maharashtra IGR e-Registration & Leave/License e-Filing (`frmPhotoThumbCapture.aspx`) *(Tested & Working)*
 - **Runtime Environment:** Windows PowerShell 5.1 (32-bit `SysWOW64` subsystem) with native `.NET` interop *(No external Node/npm or Python install required)*
+
+---
+
+## 🇮🇳 मराठीत संक्षिप्त सूचना (Quick Guide in Marathi - Maharashtra IGR)
+
+1. **डाउनलोड करा:** [Download ZIP](https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip) वर क्लिक करून झिप फाईल डाउनलोड करा आणि कोणत्याही फोल्डरमध्ये अनझिप करा.
+2. **स्कॅनर जोडा:** मंत्रा MFS100 स्कॅनर USB पोर्टमध्ये लावा (इतर चाचणी ॲप्स बंद ठेवा).
+3. **सुरू करा:** फोल्डरमधील `start.bat` फाईलवर डबल-क्लिक करा.
+4. **परवानगी द्या:** क्रोममध्ये Site Settings &rarr; Insecure content &rarr; **Allow** करा.
+5. **चाचणी घ्या:** [लाइव्ह वेब टेस्टर](https://qalqi.github.io/mfs100client/) वर किंवा आपल्या **महाराष्ट्र IGR ई-नोंदणी पोर्टलवर** थेट अंगठ्याचा ठसा स्कॅन करा.
+
+---
+
+## 🇮🇳 ગુજરાતીમાં ઝડપી માર્ગદર્શિકા (Quick Guide in Gujarati)
+
+1. **ડાઉનલોડ કરો:** [Download ZIP](https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip) પર ક્લિક કરીને ઝિપ ફાઇલ ડાઉનલોડ કરો અને અનઝિપ કરો.
+2. **સ્કેનર કનેક્ટ કરો:** મંત્રા MFS100 સ્કેનરને USB પોર્ટમાં લગાવો (ડેસ્કટોપ ટેસ્ટ એપ્સ બંધ રાખો).
+3. **ચાલુ કરો:** ફોલ્ડરમાં રહેલી `start.bat` ફાઇલ પર ડબલ-ક્લિક કરો.
+4. **મંજૂરી આપો:** ક્રોમ સાઇટ સેટિંગ્સમાં Insecure content &rarr; **Allow** કરો.
+5. **ટેસ્ટ કરો:** [લાઇવ વેબ ટેસ્ટર](https://qalqi.github.io/mfs100client/) અથવા તમારા પોર્ટલ પર ફિંગરપ્રિન્ટ સ્કેન કરો.
 
 ---
 

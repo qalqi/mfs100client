@@ -7,8 +7,8 @@
   <!-- Primary Meta Tags -->
   <title>Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture</title>
   <meta name="title" content="Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture">
-  <meta name="description" content="Live web tester and local HTTP service bridge for Mantra MFS100 optical fingerprint scanner on Google Chrome. Tested & working on Windows 11 for government portals, e-registration, and custom web apps. Multilingual: English, Hindi, Telugu.">
-  <meta name="keywords" content="Mantra MFS100, MFS100 Web SDK, Chrome Fingerprint Scanner, Maharashtra IGR Thumb Capture, Biometric Web Bridge, MFS100 Port 8004, Windows 11 Biometric, ISO 19794-2, मंत्रा फिंगरप्रिंट, మంత్ర వేలిముద్ర స్కానర్, qalqi.com">
+  <meta name="description" content="Live web tester and local HTTP service bridge for Mantra MFS100 optical fingerprint scanner on Google Chrome. Tested & working on Windows 11 for government portals, e-registration, and custom web apps. Multilingual: English, Hindi, Marathi, Gujarati, Telugu.">
+  <meta name="keywords" content="Mantra MFS100, MFS100 Web SDK, Chrome Fingerprint Scanner, Maharashtra IGR Thumb Capture, Biometric Web Bridge, MFS100 Port 8004, Windows 11 Biometric, ISO 19794-2, मंत्रा फिंगरप्रिंट, मंत्रा बायोमेट्रिक महाराष्ट्र, મંત્રા ફિંગરપ્રિન્ટ, మంత్ర వేలిముద్ర స్కానర్, qalqi.com">
   <meta name="author" content="qalqi.com">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://qalqi.github.io/mfs100client/">
@@ -38,7 +38,7 @@
     "name": "Mantra MFS100 Web Bridge",
     "operatingSystem": "Windows 11, Windows 10",
     "applicationCategory": "DeveloperApplication",
-    "inLanguage": ["en", "hi", "te"],
+    "inLanguage": ["en", "hi", "mr", "gu", "te"],
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -101,6 +101,7 @@
       justify-content: center;
       gap: 8px;
       margin-bottom: 20px;
+      flex-wrap: wrap;
     }
     .lang-btn {
       background: #21262d;
@@ -347,9 +348,11 @@
 
   <!-- Language Switcher -->
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('en')">English</button>
-    <button class="lang-btn" onclick="setLang('hi')">हिन्दी (Hindi)</button>
-    <button class="lang-btn" onclick="setLang('te')">తెలుగు (Telugu)</button>
+    <button class="lang-btn active" onclick="setLang('en', event)">English</button>
+    <button class="lang-btn" onclick="setLang('hi', event)">हिन्दी (Hindi)</button>
+    <button class="lang-btn" onclick="setLang('mr', event)">मराठी (Marathi)</button>
+    <button class="lang-btn" onclick="setLang('gu', event)">ગુજરાતી (Gujarati)</button>
+    <button class="lang-btn" onclick="setLang('te', event)">తెలుగు (Telugu)</button>
   </div>
 
   <div class="header">
@@ -465,7 +468,7 @@
 <script>
   var uri = "http://127.0.0.1:8004/mfs100/";
 
-  // Multilingual Text Dictionary (English, Hindi, Telugu)
+  // Multilingual Text Dictionary (English, Hindi, Marathi, Gujarati, Telugu)
   var i18n = {
     en: {
       title: "Mantra MFS100 Web Bridge Live Tester",
@@ -513,6 +516,52 @@
       statusReady: "ब्रिज तैयार है (पोर्ट 8004)",
       footerLegal: "मंत्रा सोफटेक इंडिया या यूआईडीएआई (UIDAI) से संबद्ध नहीं है। बिना किसी वारंटी के 'AS IS' प्रदान किया गया है।"
     },
+    mr: {
+      title: "मंत्रा MFS100 वेब ब्रिज लाइव्ह टेस्टर",
+      subtitle: "गुगल क्रोमद्वारे आपल्या कॉम्प्युटरवर मंत्रा MFS100 फिंगरप्रिंट स्कॅनर तपासा (पोर्ट 8004)",
+      notice: "<strong>💡 GitHub Pages (HTTPS) वर वापरण्यासाठी सूचना:</strong> हे पेज <code>https://</code> वर लोड होते, त्यामुळे क्रोम सुरक्षिततेसाठी <code>http://127.0.0.1:8004</code> ब्लॉक करतो.<br /><strong>परवानगी देण्यासाठी:</strong> ॲड्रेस बारमधील <strong>लॉक / ट्यून आयकॉनवर</strong> क्लिक करा &rarr; <strong>Site settings</strong> &rarr; <strong>Insecure content</strong> ला <strong>Allow</strong> (परवानगी द्या) करा.",
+      stepsTitle: "🚀 आपल्या कॉम्प्युटरवर ब्रिज सुरू करण्याचे सोपे टप्पे",
+      step1: "<strong>ब्रिज डाउनलोड करा:</strong> <a href='https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip' class='btn-link btn-download' style='padding: 4px 12px; font-size: 12px; margin-left: 6px;'>📥 Download ZIP</a> वर क्लिक करून झिप फाईल डाउनलोड करा किंवा <code>git clone https://github.com/qalqi/mfs100client.git</code> वापरा. कोणत्याही फोल्डरमध्ये अनझिप करा.",
+      step2: "<strong>स्कॅनर कनेक्ट करा:</strong> मंत्रा MFS100 स्कॅनर USB पोर्टमध्ये लावा. डेस्कटॉपवरील इतर टेस्ट ॲप्स (उदा. <em>Mantra MFS100 Test</em>) <strong>बंद (Closed)</strong> ठेवा जेणेकरून USB पोर्ट मोकळा राहील.",
+      step3: "<strong>ब्रिज सुरू करा:</strong> फोल्डरमधील <code>start.bat</code> फाईलवर डबल-क्लिक करा. स्क्रीनवर <code>[OK] MFS100 Hardware Bridge listening on port 8004</code> दिसेल. ही विंडो उघडीच ठेवा.",
+      step4: "<strong>क्रोममध्ये परवानगी द्या:</strong> ॲड्रेस बारमध्ये Site settings &rarr; <strong>Insecure content</strong> ला <strong>Allow</strong> करा.",
+      step5: "<strong>अंगठ्याचा ठसा स्कॅन करा:</strong> खालील <strong>'1. स्कॅनर माहिती तपासा'</strong> वर क्लिक करा, नंतर <strong>'2. फिंगरप्रिंट कॅप्चर करा'</strong> वर क्लिक करा. स्कॅनरचा लाल दिवा लागेल, तुमचा अंगठा स्कॅनरवर ठेवा! (हे महाराष्ट्र IGR ई-नोंदणी पोर्टलवर देखील थेट चालेल).",
+      interfaceTitle: "⚡ लाइव्ह स्कॅनर इंटरफेस",
+      placeholder: "स्कॅन केलेला अंगठ्याचा ठसा येथे दिसेल",
+      btnInfo: "1. स्कॅनर माहिती तपासा",
+      btnCapture: "2. फिंगरप्रिंट कॅप्चर करा",
+      lblDevice: "उपकरण (Device):",
+      lblSerial: "अनुक्रमांक (Serial No):",
+      lblQuality: "गुणवत्ता स्कोअर (Quality):",
+      lblNfiq: "NFIQ स्कोअर:",
+      lblIso: "ISO टेम्पलेट लांबी:",
+      logTitle: "लाइव्ह संप्रेषण नोंद (Live Log)",
+      statusReady: "ब्रिज तयार आहे (पोर्ट 8004)",
+      footerLegal: "मंत्रा सोफटेक इंडिया किंवा UIDAI शी संलग्न नाही. कोणत्याही हमीशिवाय 'AS IS' प्रदान केले आहे."
+    },
+    gu: {
+      title: "મંત્રા MFS100 વેબ બ્રિજ લાઇવ ટેસ્ટર",
+      subtitle: "ગૂગલ ક્રોમ દ્વારા તમારા કોમ્પ્યુટર પર મંત્રા MFS100 ફિંગરપ્રિન્ટ સ્કેનરનું પરીક્ષણ કરો (પોર્ટ 8004)",
+      notice: "<strong>💡 GitHub Pages (HTTPS) પર ચલાવવા માટેની સૂચના:</strong> આ પેજ <code>https://</code> પર લોડ થાય છે, તેથી ક્રોમ <code>http://127.0.0.1:8004</code> ને બ્લોક કરે છે.<br /><strong>મંજૂરી આપવા માટે:</strong> એડ્રેસ બારમાં <strong>લૉક / ટ્યુન આઇકોન</strong> પર ક્લિક કરો &rarr; <strong>Site settings</strong> &rarr; <strong>Insecure content</strong> ને <strong>Allow</strong> (મંજૂરી આપો) કરો.",
+      stepsTitle: "🚀 તમારા પોતાના PC પર ચલાવવાના સરળ પગલાં",
+      step1: "<strong>બ્રિજ ડાઉનલોડ કરો:</strong> <a href='https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip' class='btn-link btn-download' style='padding: 4px 12px; font-size: 12px; margin-left: 6px;'>📥 Download ZIP</a> પર ક્લિક કરીને ઝિપ ફાઇલ ડાઉનલોડ કરો અથવા <code>git clone https://github.com/qalqi/mfs100client.git</code> કરો. તેને કોઈપણ ફોલ્ડરમાં અનઝિપ કરો.",
+      step2: "<strong>સ્કેનર કનેક્ટ કરો:</strong> મંત્રા MFS100 સ્કેનરને USB પોર્ટમાં લગાવો. ખાતરી કરો કે ડેસ્કટોપ પર અન્ય કોઈપણ ટેસ્ટ એપ (જેમ કે <em>Mantra MFS100 Test</em>) <strong>બંધ (Closed)</strong> હોય જેથી USB પોર્ટ ખાલી રહે.",
+      step3: "<strong>બ્રિજ શરૂ કરો:</strong> ફોલ્ડરમાં રહેલી <code>start.bat</code> ફાઇલ પર ડબલ-ક્લિક કરો. સ્ક્રીન પર <code>[OK] MFS100 Hardware Bridge listening on port 8004</code> દેખાશે. આ વિન્ડો ચાલુ રાખો.",
+      step4: "<strong>ક્રોમમાં મંજૂરી આપો:</strong> સાઇટ સેટિંગ્સમાં જઈને <strong>Insecure content</strong> ને <strong>Allow</strong> કરો.",
+      step5: "<strong>ફિંગરપ્રિન્ટ સ્કેન કરો:</strong> નીચે <strong>'1. સ્કેનર માહિતી તપાસો'</strong> પર ક્લિક કરો, પછી <strong>'2. ફિંગરપ્રિન્ટ કેપ્ચર કરો'</strong> પર ક્લિક કરો. સ્કેનરની લાલ લાઇટ થશે, તમારી આંગળી સ્કેનર પર મૂકો!",
+      interfaceTitle: "⚡ લાઇવ સ્કેનર ઇન્ટરફેસ",
+      placeholder: "સ્કેન કરેલ આંગળીની છાપ અહીં દેખાશે",
+      btnInfo: "1. સ્કેનર માહિતી તપાસો",
+      btnCapture: "2. ફિંગરપ્રિન્ટ કેપ્ચર કરો",
+      lblDevice: "ડિવાઇસ (Device):",
+      lblSerial: "સીરીયલ નંબર:",
+      lblQuality: "ગુણવત્તા સ્કોર (Quality):",
+      lblNfiq: "NFIQ મેટ્રિક:",
+      lblIso: "ISO ટેમ્પ્લેટ લંબાઈ:",
+      logTitle: "લાઇવ કોમ્યુનિકેશન લૉગ (Live Log)",
+      statusReady: "બ્રિજ તૈયાર છે (પોર્ટ 8004)",
+      footerLegal: "મંત્રા સોફટેક ઇન્ડિયા અથવા UIDAI સાથે જોડાયેલ નથી. કોઈપણ વોરંટી વિના 'AS IS' પ્રદાન કરેલ છે."
+    },
     te: {
       title: "మంత్ర MFS100 వెబ్ బ్రిడ్జ్ లైవ్ టెస్టర్",
       subtitle: "గూగుల్ క్రోమ్ ద్వారా మీ మంత్ర MFS100 వేలిముద్ర స్కానర్‌ను సులభంగా పరీక్షించండి (పోర్ట్ 8004)",
@@ -538,7 +587,7 @@
     }
   };
 
-  function setLang(lang) {
+  function setLang(lang, ev) {
     var d = i18n[lang] || i18n.en;
     document.getElementById("txtTitle").innerText = d.title;
     document.getElementById("txtSubtitle").innerText = d.subtitle;
@@ -564,7 +613,9 @@
 
     // Toggle active class on buttons
     document.querySelectorAll(".lang-btn").forEach(function(b) { b.classList.remove("active"); });
-    event.target.classList.add("active");
+    if (ev && ev.target) {
+      ev.target.classList.add("active");
+    }
   }
 
   function log(msg) {
