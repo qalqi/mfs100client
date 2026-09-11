@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mantra MFS100 Web Bridge Tester</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #00e5ff;
+      --text: #c9d1d9;
+      --text-bright: #ffffff;
+      --success: #39d353;
+      --btn-bg: #238636;
+      --btn-hover: #2ea043;
+      --warning: #d29922;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px;
+    }
+    .container {
+      max-width: 860px;
+      width: 100%;
+    }
+    .banner {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .header h1 {
+      color: var(--text-bright);
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .header p {
+      color: #8b949e;
+      font-size: 14px;
+    }
+    .notice-box {
+      background: rgba(210, 153, 34, 0.1);
+      border: 1px solid var(--warning);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #e3b341;
+    }
+    .notice-box a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media(max-width: 650px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .preview-box {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #090d13;
+      overflow: hidden;
+      position: relative;
+    }
+    .preview-box img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    .preview-placeholder {
+      color: #484f58;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+    }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    button {
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--btn-bg);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--btn-hover);
+    }
+    .btn-secondary {
+      background: #21262d;
+      color: #c9d1d9;
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: #30363d;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+    .status-ready { background: rgba(57, 211, 83, 0.2); color: var(--success); }
+    .status-wait { background: rgba(0, 229, 255, 0.2); color: var(--accent); }
+    .status-err { background: rgba(248, 81, 73, 0.2); color: #f85149; }
+    .log-box {
+      background: #090d13;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: #58a6ff;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #8b949e;
+      margin-top: 20px;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <img src="assets/banner.jpg" class="banner" alt="Mantra MFS100 Chrome Web Bridge" />
+
+  <div class="header">
+    <h1>Mantra MFS100 Web Bridge Live Tester</h1>
+    <p>Test your live Mantra MFS100 fingerprint scanner from Google Chrome via local bridge (Port 8004)</p>
+  </div>
+
+  <div class="notice-box">
+    <strong>💡 Running over HTTPS on GitHub Pages:</strong>
+    Because this page is loaded over <code>https://</code>, Chrome blocks local calls to <code>http://127.0.0.1:8004</code> by default.<br />
+    <strong>To allow:</strong> Click the <strong>tune / lock icon</strong> in your browser address bar &rarr; <strong>Site settings</strong> &rarr; Set <strong>Insecure content</strong> to <strong>Allow</strong>.
+  </div>
+
+  <div class="card">
+    <div class="grid">
+      <!-- Left: Fingerprint Preview -->
+      <div>
+        <div class="preview-box" id="previewBox">
+          <span class="preview-placeholder" id="placeholderText">Captured live fingerprint image will appear here</span>
+          <img id="imgFinger" style="display:none;" alt="Captured Fingerprint" />
+        </div>
+        <div style="text-align: center;">
+          <span class="status-badge status-ready" id="statusBadge">Bridge: Ready on Port 8004</span>
+        </div>
+      </div>
+
+      <!-- Right: Action Buttons & Details -->
+      <div class="btn-group">
+        <button class="btn-secondary" onclick="checkDeviceInfo()">1. Check Scanner Info</button>
+        <button class="btn-primary" onclick="captureFingerprint()">2. Capture Fingerprint</button>
+        
+        <div style="margin-top: 14px; font-size: 13px; line-height: 2;">
+          <div><strong>Device:</strong> <span id="valDevice">-</span></div>
+          <div><strong>Serial No:</strong> <span id="valSerial">-</span></div>
+          <div><strong>Quality Score:</strong> <span id="valQuality">-</span></div>
+          <div><strong>NFIQ Metric:</strong> <span id="valNfiq">-</span></div>
+          <div><strong>ISO Template Length:</strong> <span id="valIso">-</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom: 10px; font-size: 14px; color: #8b949e;">Live Communication Log</h3>
+    <div class="log-box" id="logBox">Waiting for action... (Make sure start.bat is running locally)</div>
+  </div>
+
+  <div class="footer">
+    <p>
+      Open Source Project &bull; 
+      <a href="https://github.com/qalqi/mfs100client" target="_blank">GitHub Repository</a> &bull; 
+      <a href="https://github.com/qalqi/mfs100client/issues" target="_blank">Report an Issue</a> &bull; 
+      Licensed under MIT
+    </p>
+  </div>
+</div>
+
+<script>
+  var uri = "http://127.0.0.1:8004/mfs100/";
+
+  function log(msg) {
+    var b = document.getElementById("logBox");
+    b.innerText += "\n" + msg;
+    b.scrollTop = b.scrollHeight;
+  }
+
+  function checkDeviceInfo() {
+    log("[*] Sending GET /mfs100/info...");
+    document.getElementById("statusBadge").className = "status-badge status-wait";
+    document.getElementById("statusBadge").innerText = "Querying Scanner...";
+
+    $.ajax({
+      type: "GET",
+      url: uri + "info",
+      crossDomain: true,
+      success: function(data) {
+        log("[✓] Response: " + JSON.stringify(data));
+        if (data.ErrorCode === "0") {
+          document.getElementById("valDevice").innerText = data.DeviceInfo.Make + " " + data.DeviceInfo.Model;
+          document.getElementById("valSerial").innerText = data.DeviceInfo.SerialNo + " (" + data.DeviceInfo.Width + "x" + data.DeviceInfo.Height + ")";
+          document.getElementById("statusBadge").className = "status-badge status-ready";
+          document.getElementById("statusBadge").innerText = "Connected: " + data.DeviceInfo.SerialNo;
+        } else {
+          document.getElementById("statusBadge").className = "status-badge status-err";
+          document.getElementById("statusBadge").innerText = "Error: " + data.ErrorDescription;
+        }
+      },
+      error: function(xhr, status, error) {
+        log("[-] Error connecting to http://127.0.0.1:8004/mfs100/info.");
+        log("    1. Is 'start.bat' running on your PC?");
+        log("    2. If on HTTPS, did you set Site Settings -> Insecure Content -> Allow?");
+        document.getElementById("statusBadge").className = "status-badge status-err";
+        document.getElementById("statusBadge").innerText = "Bridge Offline / Blocked";
+      }
+    });
+  }
+
+  function captureFingerprint() {
+    log("\n[*] Triggering POST /mfs100/capture...");
+    log("[*] Scanner sensor LED is ON. Place your finger on the scanner now...");
+    document.getElementById("statusBadge").className = "status-badge status-wait";
+    document.getElementById("statusBadge").innerText = "Sensor Active: Place Finger...";
+
+    $.ajax({
+      type: "POST",
+      url: uri + "capture",
+      data: JSON.stringify({ Quality: 50, TimeOut: 10 }),
+      contentType: "application/json",
+      crossDomain: true,
+      success: function(data) {
+        log("[✓] Capture response received!");
+        if (data.ErrorCode === "0") {
+          document.getElementById("valQuality").innerText = data.Quality + " / 100";
+          document.getElementById("valNfiq").innerText = data.Nfiq;
+          document.getElementById("valIso").innerText = data.IsoTemplate.length + " characters (Base64)";
+          
+          var img = document.getElementById("imgFinger");
+          img.src = "data:image/bmp;base64," + data.BitmapData;
+          img.style.display = "block";
+          document.getElementById("placeholderText").style.display = "none";
+
+          document.getElementById("statusBadge").className = "status-badge status-ready";
+          document.getElementById("statusBadge").innerText = "Capture Successful! Quality: " + data.Quality;
+          log("[✓] Live Fingerprint BMP rendered on screen!");
+        } else {
+          document.getElementById("statusBadge").className = "status-badge status-err";
+          document.getElementById("statusBadge").innerText = "Capture failed: " + data.ErrorDescription;
+          log("[-] Capture failed: " + data.ErrorDescription);
+        }
+      },
+      error: function(xhr, status, error) {
+        log("[-] Capture network request failed on port 8004.");
+        document.getElementById("statusBadge").className = "status-badge status-err";
+        document.getElementById("statusBadge").innerText = "Network Request Failed";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

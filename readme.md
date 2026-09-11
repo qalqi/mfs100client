@@ -6,6 +6,8 @@
 
 A lightweight, zero-dependency local HTTP service bridge that allows modern web browsers (Google Chrome, Microsoft Edge, Brave, Firefox) to communicate directly with the **Mantra MFS100 (L0)** optical fingerprint scanner for web applications and government portals (such as Maharashtra IGR e-filing `frmPhotoThumbCapture.aspx`).
 
+🌐 **Live GitHub Pages Web Tester:** **[https://qalqi.github.io/mfs100client/](https://qalqi.github.io/mfs100client/)**
+
 ---
 
 ## 🟢 Verified & Tested Status
@@ -154,7 +156,7 @@ You will see:
 
 1. In Chrome, open: `chrome://flags/#allow-insecure-localhost`
    - Set to **Enabled** and click **Relaunch**.
-2. On your government / IGR portal tab:
+2. On your government / IGR portal tab (or GitHub Pages tester):
    - Click the site settings icon (left of URL bar).
    - Ensure **Insecure Content** is set to **Allow**.
    - Ensure **Camera** is set to **Allow** (for photo capture).
