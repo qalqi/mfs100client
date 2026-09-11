@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.jpg" alt="Mantra MFS100 Chrome Web Bridge" width="100%" />
+</p>
+
 # Mantra MFS100 Web Bridge (Chrome / Web SDK)
 
 A lightweight, zero-dependency local HTTP service bridge that allows modern web browsers (Google Chrome, Microsoft Edge, Brave, Firefox) to communicate directly with the **Mantra MFS100 (L0)** optical fingerprint scanner for web applications and government portals (such as Maharashtra IGR e-filing `frmPhotoThumbCapture.aspx`).
@@ -165,6 +169,22 @@ You will see:
 | `ERR_CONNECTION_REFUSED` on 8004 | Bridge is not running | Run `start.bat` |
 | `TypeError: Cannot set properties of null (setting 'srcObject')` | Camera blocked / no webcam | Set Chrome camera permissions to "Allow" |
 | `Port 8004 in use` | Another process is holding 8004 | Run `Get-NetTCPConnection -LocalPort 8004` and stop the PID |
+
+---
+
+## 💬 Issues & Community Support
+
+If you encounter any issues, bugs, or have questions while running this bridge on your machine:
+
+1. **Search Existing Issues:** Check the [GitHub Issues](https://github.com/qalqi/mfs100client/issues) page to see if your issue has already been discussed.
+2. **Open a New Issue:** If your issue is not listed, report it here:  
+   👉 **[Create a New Issue on GitHub](https://github.com/qalqi/mfs100client/issues/new)**
+3. **What to include in your issue description:**
+   - **Windows Version:** (e.g., Windows 11 Pro 64-bit)
+   - **Browser & Version:** (e.g., Chrome 123.x)
+   - **Target Web Portal:** (e.g., Maharashtra IGR `frmPhotoThumbCapture.aspx` or custom app)
+   - **Terminal Output:** Any messages printed in the `start.bat` console window
+   - **DevTools Console Log:** Errors displayed under `F12` > Console tab in Chrome
 
 ---
 
