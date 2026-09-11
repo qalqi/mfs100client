@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qalqi.github.io/mfs100client/sitemap.xml
