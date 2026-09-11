@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mantra MFS100 Web Bridge Test</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #00e5ff;
+      --text: #c9d1d9;
+      --text-bright: #ffffff;
+      --success: #39d353;
+      --btn-bg: #238636;
+      --btn-hover: #2ea043;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      color: var(--text-bright);
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .header p {
+      color: #8b949e;
+      font-size: 14px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media(max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .preview-box {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #090d13;
+      overflow: hidden;
+      position: relative;
+    }
+    .preview-box img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    .preview-placeholder {
+      color: #484f58;
+      font-size: 14px;
+      text-align: center;
+    }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--btn-bg);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--btn-hover);
+    }
+    .btn-secondary {
+      background: #21262d;
+      color: #c9d1d9;
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: #30363d;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .status-ready { background: rgba(57, 211, 83, 0.2); color: var(--success); }
+    .status-wait { background: rgba(0, 229, 255, 0.2); color: var(--accent); }
+    .status-err { background: rgba(248, 81, 73, 0.2); color: #f85149; }
+    .log-box {
+      background: #090d13;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #58a6ff;
+      max-height: 160px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Mantra MFS100 Web Bridge Tester</h1>
+    <p>Tests local communication with <code>http://127.0.0.1:8004/mfs100/</code></p>
+  </div>
+
+  <div class="card">
+    <div class="grid">
+      <!-- Left: Fingerprint Preview -->
+      <div>
+        <div class="preview-box" id="previewBox">
+          <span class="preview-placeholder" id="placeholderText">Fingerprint image will appear here</span>
+          <img id="imgFinger" style="display:none;" alt="Captured Fingerprint" />
+        </div>
+        <div style="text-align: center;">
+          <span class="status-badge status-ready" id="statusBadge">Bridge: Ready on Port 8004</span>
+        </div>
+      </div>
+
+      <!-- Right: Action Buttons & Details -->
+      <div class="btn-group">
+        <button class="btn-secondary" onclick="checkDeviceInfo()">1. Check Scanner Info</button>
+        <button class="btn-primary" onclick="captureFingerprint()">2. Capture Fingerprint</button>
+        
+        <div style="margin-top: 10px; font-size: 13px; line-height: 1.8;">
+          <div><strong>Serial No:</strong> <span id="valSerial">-</span></div>
+          <div><strong>Quality:</strong> <span id="valQuality">-</span></div>
+          <div><strong>NFIQ:</strong> <span id="valNfiq">-</span></div>
+          <div><strong>ISO Template Length:</strong> <span id="valIso">-</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom: 10px; font-size: 14px; color: #8b949e;">Live Communication Log</h3>
+    <div class="log-box" id="logBox">Waiting for user action...</div>
+  </div>
+</div>
+
+<!-- Local MFS100 Client Library -->
+<script>
+  // Point to our local bridge on port 8004
+  var uri = "http://127.0.0.1:8004/mfs100/";
+
+  function log(msg) {
+    var b = document.getElementById("logBox");
+    b.innerText += "\n" + msg;
+    b.scrollTop = b.scrollHeight;
+  }
+
+  function checkDeviceInfo() {
+    log("[*] Sending GET /mfs100/info...");
+    document.getElementById("statusBadge").className = "status-badge status-wait";
+    document.getElementById("statusBadge").innerText = "Querying Scanner...";
+
+    $.ajax({
+      type: "GET",
+      url: uri + "info",
+      crossDomain: true,
+      success: function(data) {
+        log("[✓] Response: " + JSON.stringify(data));
+        if (data.ErrorCode === "0") {
+          document.getElementById("valSerial").innerText = data.DeviceInfo.SerialNo + " (" + data.DeviceInfo.Make + " " + data.DeviceInfo.Model + ")";
+          document.getElementById("statusBadge").className = "status-badge status-ready";
+          document.getElementById("statusBadge").innerText = "Device Connected: " + data.DeviceInfo.SerialNo;
+        } else {
+          document.getElementById("statusBadge").className = "status-badge status-err";
+          document.getElementById("statusBadge").innerText = "Device Error: " + data.ErrorDescription;
+        }
+      },
+      error: function(err) {
+        log("[-] Error connecting to port 8004. Is start.bat running?");
+        document.getElementById("statusBadge").className = "status-badge status-err";
+        document.getElementById("statusBadge").innerText = "Bridge Offline (Connection Refused)";
+      }
+    });
+  }
+
+  function captureFingerprint() {
+    log("\n[*] Triggering POST /mfs100/capture...");
+    log("[*] Scanner LED is ON. Place your finger on the sensor!");
+    document.getElementById("statusBadge").className = "status-badge status-wait";
+    document.getElementById("statusBadge").innerText = "Sensor Active: Place Finger...";
+
+    $.ajax({
+      type: "POST",
+      url: uri + "capture",
+      data: JSON.stringify({ Quality: 50, TimeOut: 10 }),
+      contentType: "application/json",
+      crossDomain: true,
+      success: function(data) {
+        log("[✓] Capture response received!");
+        if (data.ErrorCode === "0") {
+          document.getElementById("valQuality").innerText = data.Quality;
+          document.getElementById("valNfiq").innerText = data.Nfiq;
+          document.getElementById("valIso").innerText = data.IsoTemplate.length + " base64 chars";
+          
+          // Display the live BMP image
+          var img = document.getElementById("imgFinger");
+          img.src = "data:image/bmp;base64," + data.BitmapData;
+          img.style.display = "block";
+          document.getElementById("placeholderText").style.display = "none";
+
+          document.getElementById("statusBadge").className = "status-badge status-ready";
+          document.getElementById("statusBadge").innerText = "Capture Successful! Quality: " + data.Quality;
+          log("[✓] Live Fingerprint successfully rendered in preview!");
+        } else {
+          document.getElementById("statusBadge").className = "status-badge status-err";
+          document.getElementById("statusBadge").innerText = "Capture failed: " + data.ErrorDescription;
+          log("[-] Capture failed: " + data.ErrorDescription);
+        }
+      },
+      error: function(err) {
+        log("[-] Capture network error on port 8004.");
+        document.getElementById("statusBadge").className = "status-badge status-err";
+        document.getElementById("statusBadge").innerText = "Network Error on Port 8004";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
