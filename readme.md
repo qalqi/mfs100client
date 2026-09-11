@@ -6,7 +6,7 @@
 
 A lightweight, zero-dependency local HTTP service bridge that allows modern web browsers (Google Chrome, Microsoft Edge, Brave, Firefox) to communicate directly with the **Mantra MFS100 (L0)** optical fingerprint scanner for web applications and government portals (such as Maharashtra IGR e-filing `frmPhotoThumbCapture.aspx`).
 
-🌐 **Live Web Tester:** **[https://qalqi.github.io/mfs100client/](https://qalqi.github.io/mfs100client/)**  
+🌐 **Live Web Tester (Multilingual - English / हिन्दी / తెలుగు):** **[https://qalqi.github.io/mfs100client/](https://qalqi.github.io/mfs100client/)**  
 🚀 **Developed & Maintained by:** **[qalqi.com](https://qalqi.com)**
 
 ---
@@ -18,6 +18,26 @@ A lightweight, zero-dependency local HTTP service bridge that allows modern web 
 - **Web Browser:** Google Chrome *(Tested & Working with Private Network Access / PNA)*
 - **Target Application:** Maharashtra IGR e-Registration & Leave/License e-Filing (`frmPhotoThumbCapture.aspx`) *(Tested & Working)*
 - **Runtime Environment:** Windows PowerShell 5.1 (32-bit `SysWOW64` subsystem) with native `.NET` interop *(No external Node/npm or Python install required)*
+
+---
+
+## 🇮🇳 हिन्दी में त्वरित निर्देश (Quick Guide in Hindi)
+
+1. **डाउनलोड करें:** [Download ZIP](https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip) पर क्लिक करके रिपोजिटरी को डाउनलोड करें और अनज़िप करें।
+2. **स्कैनर जोड़ें:** अपने मंत्रा MFS100 स्कैनर को USB पोर्ट में लगाएं। (MFS100 Test जैसे अन्य सॉफ्टवेयर बंद रखें)।
+3. **शुरू करें:** फोल्डर में `start.bat` पर डबल-क्लिक करें।
+4. **अनुमति दें:** क्रोम में Site Settings &rarr; Insecure content &rarr; **Allow** करें।
+5. **परीक्षण करें:** [लाइव वेब परीक्षक](https://qalqi.github.io/mfs100client/) पर जाएं या अपने पोर्टल पर फिंगरप्रिंट कैप्चर करें।
+
+---
+
+## 🇮🇳 తెలుగులో శీఘ్ర సూచనలు (Quick Guide in Telugu)
+
+1. **డౌన్‌లోడ్ చేయండి:** [Download ZIP](https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip) క్లిక్ చేసి జిప్ ఫైల్ డౌన్‌లోడ్ చేసుకోండి మరియు అన్‌జిప్ చేయండి.
+2. **స్కానర్‌ను ప్లగ్ చేయండి:** మంత్ర MFS100 స్కానర్‌ను USB పోర్ట్‌కు కనెక్ట్ చేయండి (డెస్క్‌టాప్ టెస్ట్ యాప్‌లను క్లోజ్ చేయండి).
+3. **రన్ చేయండి:** ఫోల్డర్‌లోని `start.bat` పై డబుల్ క్లిక్ చేయండి.
+4. **క్రోమ్ సెట్టింగ్:** క్రోమ్ సైట్ సెట్టింగ్స్‌లో Insecure content &rarr; **Allow** చేయండి.
+5. **టెస్ట్ చేయండి:** [లైవ్ వెబ్ టెస్టర్](https://qalqi.github.io/mfs100client/) లేదా మీ ప్రభుత్వ పోర్టల్‌లో వేలిముద్రను స్కాన్ చేయండి.
 
 ---
 

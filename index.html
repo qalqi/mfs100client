@@ -7,8 +7,8 @@
   <!-- Primary Meta Tags -->
   <title>Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture</title>
   <meta name="title" content="Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture">
-  <meta name="description" content="Live web tester and local HTTP service bridge for Mantra MFS100 optical fingerprint scanner on Google Chrome. Tested & working on Windows 11 for government portals, e-registration, and custom web apps.">
-  <meta name="keywords" content="Mantra MFS100, MFS100 Web SDK, Chrome Fingerprint Scanner, Maharashtra IGR Thumb Capture, Biometric Web Bridge, MFS100 Port 8004, Windows 11 Biometric, ISO 19794-2, qalqi.com">
+  <meta name="description" content="Live web tester and local HTTP service bridge for Mantra MFS100 optical fingerprint scanner on Google Chrome. Tested & working on Windows 11 for government portals, e-registration, and custom web apps. Multilingual: English, Hindi, Telugu.">
+  <meta name="keywords" content="Mantra MFS100, MFS100 Web SDK, Chrome Fingerprint Scanner, Maharashtra IGR Thumb Capture, Biometric Web Bridge, MFS100 Port 8004, Windows 11 Biometric, ISO 19794-2, मंत्रा फिंगरप्रिंट, మంత్ర వేలిముద్ర స్కానర్, qalqi.com">
   <meta name="author" content="qalqi.com">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://qalqi.github.io/mfs100client/">
@@ -38,6 +38,7 @@
     "name": "Mantra MFS100 Web Bridge",
     "operatingSystem": "Windows 11, Windows 10",
     "applicationCategory": "DeveloperApplication",
+    "inLanguage": ["en", "hi", "te"],
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -93,6 +94,33 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
       aspect-ratio: 16 / 9;
       object-fit: cover;
+    }
+    /* Lang Switcher */
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .lang-btn {
+      background: #21262d;
+      color: #8b949e;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      color: #fff;
+      border-color: #58a6ff;
+    }
+    .lang-btn.active {
+      background: #1f6feb;
+      color: #fff;
+      border-color: #388bfd;
     }
     .header {
       text-align: center;
@@ -317,9 +345,16 @@
 <div class="container">
   <img src="assets/banner.jpg" class="banner" alt="Mantra MFS100 Chrome Web Bridge - Live Biometric Capture on Windows 11" />
 
+  <!-- Language Switcher -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('hi')">हिन्दी (Hindi)</button>
+    <button class="lang-btn" onclick="setLang('te')">తెలుగు (Telugu)</button>
+  </div>
+
   <div class="header">
-    <h1>Mantra MFS100 Web Bridge Live Tester</h1>
-    <p>Test your live Mantra MFS100 fingerprint scanner from Google Chrome via local bridge (Port 8004)</p>
+    <h1 id="txtTitle">Mantra MFS100 Web Bridge Live Tester</h1>
+    <p id="txtSubtitle">Test your live Mantra MFS100 fingerprint scanner from Google Chrome via local bridge (Port 8004)</p>
     <div class="badge-bar">
       <span class="chip">OS: <strong>Windows 11 / 10</strong></span>
       <span class="chip">Hardware: <strong>MFS100 (L0)</strong></span>
@@ -328,13 +363,20 @@
     </div>
   </div>
 
+  <!-- Notice Box -->
+  <div class="notice-box" id="txtNotice">
+    <strong>💡 Running over HTTPS on GitHub Pages:</strong>
+    Because this page is loaded over <code>https://</code>, Chrome blocks local calls to <code>http://127.0.0.1:8004</code> by default.<br />
+    <strong>To allow:</strong> Click the <strong>tune / lock icon</strong> in your browser address bar &rarr; <strong>Site settings</strong> &rarr; Set <strong>Insecure content</strong> to <strong>Allow</strong>.
+  </div>
+
   <!-- Steps To Run -->
   <div class="card" style="border-left: 4px solid var(--accent);">
-    <div class="card-title">🚀 How to Run the Bridge on Your Own PC</div>
+    <div class="card-title" id="txtStepsTitle">🚀 How to Run the Bridge on Your Own PC</div>
     <ul class="step-list">
       <li class="step-item">
         <div class="step-number">1</div>
-        <div class="step-body">
+        <div class="step-body" id="txtStep1">
           <strong>Download the Bridge:</strong>
           <a href="https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip" class="btn-link btn-download" style="padding: 4px 12px; font-size: 12px; margin-left: 6px;">📥 Download ZIP</a>
           or clone via <code>git clone https://github.com/qalqi/mfs100client.git</code>. Extract it to any folder.
@@ -342,28 +384,28 @@
       </li>
       <li class="step-item">
         <div class="step-number">2</div>
-        <div class="step-body">
+        <div class="step-body" id="txtStep2">
           <strong>Connect Scanner & Close Other Tools:</strong>
           Plug your Mantra MFS100 scanner into a USB port. Make sure any desktop test app (like <em>Mantra MFS100 Test</em>) is <strong>closed</strong> so the USB port is free.
         </div>
       </li>
       <li class="step-item">
         <div class="step-number">3</div>
-        <div class="step-body">
+        <div class="step-body" id="txtStep3">
           <strong>Launch the Bridge:</strong>
           Double-click <code>start.bat</code> inside the extracted folder. You will see <code>[OK] MFS100 Hardware Bridge listening on port 8004</code>. Keep this window open.
         </div>
       </li>
       <li class="step-item">
         <div class="step-number">4</div>
-        <div class="step-body">
+        <div class="step-body" id="txtStep4">
           <strong>Allow Chrome Local Connection:</strong>
           Because this web page runs on <code>https://</code>, click the <strong>tune / lock icon</strong> in Chrome's address bar &rarr; <strong>Site settings</strong> &rarr; set <strong>Insecure content</strong> to <strong>Allow</strong>.
         </div>
       </li>
       <li class="step-item">
         <div class="step-number">5</div>
-        <div class="step-body">
+        <div class="step-body" id="txtStep5">
           <strong>Test Below or on Your Portal:</strong>
           Click <strong>"1. Check Scanner Info"</strong> below to confirm connection, then click <strong>"2. Capture Fingerprint"</strong>! It will work directly on this page and on your government e-filing portal.
         </div>
@@ -373,7 +415,7 @@
 
   <!-- Live Tester Card -->
   <div class="card">
-    <div class="card-title">⚡ Live Scanner Interface</div>
+    <div class="card-title" id="txtInterfaceTitle">⚡ Live Scanner Interface</div>
     <div class="grid">
       <!-- Left: Fingerprint Preview -->
       <div>
@@ -388,22 +430,22 @@
 
       <!-- Right: Action Buttons & Details -->
       <div class="btn-group">
-        <button class="btn-secondary" onclick="checkDeviceInfo()">1. Check Scanner Info</button>
-        <button class="btn-primary" onclick="captureFingerprint()">2. Capture Fingerprint</button>
+        <button class="btn-secondary" id="btnInfo" onclick="checkDeviceInfo()">1. Check Scanner Info</button>
+        <button class="btn-primary" id="btnCapture" onclick="captureFingerprint()">2. Capture Fingerprint</button>
         
         <div style="margin-top: 14px; font-size: 13px; line-height: 2;">
-          <div><strong>Device:</strong> <span id="valDevice">-</span></div>
-          <div><strong>Serial No:</strong> <span id="valSerial">-</span></div>
-          <div><strong>Quality Score:</strong> <span id="valQuality">-</span></div>
-          <div><strong>NFIQ Metric:</strong> <span id="valNfiq">-</span></div>
-          <div><strong>ISO Template Length:</strong> <span id="valIso">-</span></div>
+          <div><strong id="lblDevice">Device:</strong> <span id="valDevice">-</span></div>
+          <div><strong id="lblSerial">Serial No:</strong> <span id="valSerial">-</span></div>
+          <div><strong id="lblQuality">Quality Score:</strong> <span id="valQuality">-</span></div>
+          <div><strong id="lblNfiq">NFIQ Metric:</strong> <span id="valNfiq">-</span></div>
+          <div><strong id="lblIso">ISO Template Length:</strong> <span id="valIso">-</span></div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <h3 style="margin-bottom: 10px; font-size: 14px; color: #8b949e;">Live Communication Log</h3>
+    <h3 style="margin-bottom: 10px; font-size: 14px; color: #8b949e;" id="txtLogTitle">Live Communication Log</h3>
     <div class="log-box" id="logBox">Waiting for action... (Make sure start.bat is running locally)</div>
   </div>
 
@@ -414,7 +456,7 @@
       <a href="https://github.com/qalqi/mfs100client/issues" target="_blank">Report an Issue</a> &bull; 
       Licensed under MIT
     </p>
-    <p style="font-size: 11px; color: #484f58; margin-top: 4px;">
+    <p style="font-size: 11px; color: #484f58; margin-top: 4px;" id="txtFooterLegal">
       Not affiliated with Mantra Softech India Pvt. Ltd. or UIDAI. Provided AS IS with no warranty or liability.
     </p>
   </footer>
@@ -422,6 +464,108 @@
 
 <script>
   var uri = "http://127.0.0.1:8004/mfs100/";
+
+  // Multilingual Text Dictionary (English, Hindi, Telugu)
+  var i18n = {
+    en: {
+      title: "Mantra MFS100 Web Bridge Live Tester",
+      subtitle: "Test your live Mantra MFS100 fingerprint scanner from Google Chrome via local bridge (Port 8004)",
+      notice: "<strong>💡 Running over HTTPS on GitHub Pages:</strong> Because this page is loaded over <code>https://</code>, Chrome blocks local calls to <code>http://127.0.0.1:8004</code> by default.<br /><strong>To allow:</strong> Click the <strong>tune / lock icon</strong> in your browser address bar &rarr; <strong>Site settings</strong> &rarr; Set <strong>Insecure content</strong> to <strong>Allow</strong>.",
+      stepsTitle: "🚀 How to Run the Bridge on Your Own PC",
+      step1: "<strong>Download the Bridge:</strong> <a href='https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip' class='btn-link btn-download' style='padding: 4px 12px; font-size: 12px; margin-left: 6px;'>📥 Download ZIP</a> or clone via <code>git clone https://github.com/qalqi/mfs100client.git</code>. Extract it to any folder.",
+      step2: "<strong>Connect Scanner & Close Other Tools:</strong> Plug your Mantra MFS100 scanner into a USB port. Make sure any desktop test app (like <em>Mantra MFS100 Test</em>) is <strong>closed</strong> so the USB port is free.",
+      step3: "<strong>Launch the Bridge:</strong> Double-click <code>start.bat</code> inside the extracted folder. You will see <code>[OK] MFS100 Hardware Bridge listening on port 8004</code>. Keep this window open.",
+      step4: "<strong>Allow Chrome Local Connection:</strong> Because this web page runs on <code>https://</code>, click the <strong>tune / lock icon</strong> in Chrome's address bar &rarr; <strong>Site settings</strong> &rarr; set <strong>Insecure content</strong> to <strong>Allow</strong>.",
+      step5: "<strong>Test Below or on Your Portal:</strong> Click <strong>'1. Check Scanner Info'</strong> below to confirm connection, then click <strong>'2. Capture Fingerprint'</strong>! It will work directly on this page and on your government e-filing portal.",
+      interfaceTitle: "⚡ Live Scanner Interface",
+      placeholder: "Captured live fingerprint image will appear here",
+      btnInfo: "1. Check Scanner Info",
+      btnCapture: "2. Capture Fingerprint",
+      lblDevice: "Device:",
+      lblSerial: "Serial No:",
+      lblQuality: "Quality Score:",
+      lblNfiq: "NFIQ Metric:",
+      lblIso: "ISO Template Length:",
+      logTitle: "Live Communication Log",
+      statusReady: "Bridge: Ready on Port 8004",
+      footerLegal: "Not affiliated with Mantra Softech India Pvt. Ltd. or UIDAI. Provided AS IS with no warranty or liability."
+    },
+    hi: {
+      title: "मंत्रा MFS100 वेब ब्रिज लाइव परीक्षक",
+      subtitle: "अपने कंप्यूटर पर गूगल क्रोम ब्राउज़र से मंत्रा MFS100 फिंगरप्रिंट स्कैनर का परीक्षण करें (पोर्ट 8004)",
+      notice: "<strong>💡 गिटहब पेजेस (HTTPS) पर चलाने हेतु निर्देश:</strong> यह पेज <code>https://</code> पर लोड होता है, इसलिए क्रोम सुरक्षा कारणों से <code>http://127.0.0.1:8004</code> को ब्लॉक करता है।<br /><strong>अनुमति देने के लिए:</strong> एड्रेस बार में <strong>लॉक / ट्यून आइकन</strong> पर क्लिक करें &rarr; <strong>Site settings</strong> &rarr; <strong>Insecure content</strong> को <strong>Allow</strong> (अनुमति दें) करें।",
+      stepsTitle: "🚀 अपने कंप्यूटर पर चलाने के आसान चरण",
+      step1: "<strong>ब्रिज डाउनलोड करें:</strong> <a href='https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip' class='btn-link btn-download' style='padding: 4px 12px; font-size: 12px; margin-left: 6px;'>📥 Download ZIP</a> पर क्लिक करें या <code>git clone https://github.com/qalqi/mfs100client.git</code> करें। इसे किसी भी फोल्डर में अनज़िप करें।",
+      step2: "<strong>स्कैनर कनेक्ट करें:</strong> अपने मंत्रा MFS100 स्कैनर को USB पोर्ट में लगाएं। ध्यान दें कि कोई अन्य टेस्ट सॉफ्टवेयर (जैसे <em>Mantra MFS100 Test</em>) <strong>बंद (Closed)</strong> होना चाहिए ताकि USB पोर्ट खाली रहे।",
+      step3: "<strong>ब्रिज शुरू करें:</strong> फोल्डर में मौजूद <code>start.bat</code> फाइल पर डबल-क्लिक करें। आपको <code>[OK] MFS100 Hardware Bridge listening on port 8004</code> लिखा हुआ दिखाई देगा। इस विंडो को खुला रखें।",
+      step4: "<strong>क्रोम में अनुमति दें:</strong> एड्रेस बार में लॉक आइकन &rarr; Site settings &rarr; <strong>Insecure content</strong> को <strong>Allow</strong> करें।",
+      step5: "<strong>फिंगरप्रिंट स्कैन करें:</strong> नीचे <strong>'1. स्कैनर जानकारी जांचें'</strong> पर क्लिक करें, फिर <strong>'2. फिंगरप्रिंट कैप्चर करें'</strong> पर क्लिक करें। स्कैनर की लाल लाइट जल जाएगी, अपनी उंगली स्कैनर पर रखें!",
+      interfaceTitle: "⚡ लाइव स्कैनर इंटरफ़ेस",
+      placeholder: "कैप्चर की गई उंगली का निशान यहाँ दिखाई देगा",
+      btnInfo: "1. स्कैनर जानकारी जांचें",
+      btnCapture: "2. फिंगरप्रिंट कैप्चर करें",
+      lblDevice: "उपकरण (Device):",
+      lblSerial: "सीरियल नंबर:",
+      lblQuality: "गुणवत्ता स्कोर (Quality):",
+      lblNfiq: "NFIQ स्कोर:",
+      lblIso: "ISO टेम्पलेट साइज़:",
+      logTitle: "लाइव संचार लॉग (Live Log)",
+      statusReady: "ब्रिज तैयार है (पोर्ट 8004)",
+      footerLegal: "मंत्रा सोफटेक इंडिया या यूआईडीएआई (UIDAI) से संबद्ध नहीं है। बिना किसी वारंटी के 'AS IS' प्रदान किया गया है।"
+    },
+    te: {
+      title: "మంత్ర MFS100 వెబ్ బ్రిడ్జ్ లైవ్ టెస్టర్",
+      subtitle: "గూగుల్ క్రోమ్ ద్వారా మీ మంత్ర MFS100 వేలిముద్ర స్కానర్‌ను సులభంగా పరీక్షించండి (పోర్ట్ 8004)",
+      notice: "<strong>💡 GitHub Pages (HTTPS) లో ఉపయోగించే విధానం:</strong> ఈ పేజీ <code>https://</code> లో లోడ్ అవుతుంది, కాబట్టి క్రోమ్ లోకల్ పోర్ట్ <code>http://127.0.0.1:8004</code> కాల్స్‌ను బ్లాక్ చేస్తుంది.<br /><strong>అనుమతించడానికి:</strong> బ్రౌజర్ అడ్రస్ బార్‌లోని <strong>లాక్ / ట్యూన్ ఐకాన్</strong> పై క్లిక్ చేయండి &rarr; <strong>Site settings</strong> &rarr; <strong>Insecure content</strong> ను <strong>Allow</strong> (అనుమతించు) చేయండి.",
+      stepsTitle: "🚀 మీ కంప్యూటర్‌లో రన్ చేసే సులభమైన విధానం",
+      step1: "<strong>బ్రిడ్జ్‌ను డౌన్‌లోడ్ చేసుకోండి:</strong> <a href='https://github.com/qalqi/mfs100client/archive/refs/heads/main.zip' class='btn-link btn-download' style='padding: 4px 12px; font-size: 12px; margin-left: 6px;'>📥 Download ZIP</a> పై క్లిక్ చేసి జిప్ ఫైల్ డౌన్‌లోడ్ చేయండి లేదా <code>git clone https://github.com/qalqi/mfs100client.git</code> ఉపయోగించండి. ఫోల్డర్‌లో అన్‌జిప్ చేయండి.",
+      step2: "<strong>స్కానర్‌ను కనెక్ట్ చేయండి:</strong> మంత్ర MFS100 స్కానర్‌ను USB పోర్ట్‌కు ప్లగ్ చేయండి. డెస్క్‌టాప్ టెస్ట్ యాప్‌లు (ఉదా: <em>Mantra MFS100 Test</em>) ఏవైనా ఉంటే <strong>క్లోజ్ చేయండి</strong>.",
+      step3: "<strong>బ్రిడ్జ్ రన్ చేయండి:</strong> ఫోల్డర్‌లోని <code>start.bat</code> ఫైల్‌పై డబుల్ క్లిక్ చేయండి. కన్సోల్ విండోలో <code>[OK] MFS100 Hardware Bridge listening on port 8004</code> కనిపిస్తుంది. విండోను అలాగే ఉంచండి.",
+      step4: "<strong>క్రోమ్ పర్మిషన్ ఇవ్వండి:</strong> సైట్ సెట్టింగ్స్‌లో <strong>Insecure content</strong> ను <strong>Allow</strong> చేయండి.",
+      step5: "<strong>వేలిముద్ర స్కాన్ చేయండి:</strong> కింద ఉన్న <strong>'1. స్కానర్ సమాచారం తనిఖీ చేయండి'</strong> పై క్లిక్ చేసి, ఆపై <strong>'2. వేలిముద్రను క్యాప్చర్ చేయండి'</strong> పై క్లిక్ చేయండి. స్కానర్‌లో ఎరుపు లైట్ వెలుగుతుంది, మీ వేలిని ఉంచండి!",
+      interfaceTitle: "⚡ లైవ్ స్కానర్ ఇంటర్‌ఫేస్",
+      placeholder: "క్యాప్చర్ చేసిన వేలిముద్ర చిత్రం ఇక్కడ కనిపిస్తుంది",
+      btnInfo: "1. స్కానర్ సమాచారం తనిఖీ చేయండి",
+      btnCapture: "2. వేలిముద్రను క్యాప్చర్ చేయండి",
+      lblDevice: "డివైస్ (Device):",
+      lblSerial: "సీరియల్ నంబర్:",
+      lblQuality: "క్వాలిటీ స్కోరు (Quality):",
+      lblNfiq: "NFIQ మెట్రిక్:",
+      lblIso: "ISO టెంప్లేట్ పొడవు:",
+      logTitle: "లైవ్ లాగ్ రికార్డు (Live Log)",
+      statusReady: "బ్రిడ్జ్ సిద్ధంగా ఉంది (పోర్ట్ 8004)",
+      footerLegal: "మంత్ర సోఫ్టెక్ ఇండియా లేదా UIDAI తో సంబంధం లేదు. ఎటువంటి వారంటీ లేకుండా 'AS IS' అందించబడింది."
+    }
+  };
+
+  function setLang(lang) {
+    var d = i18n[lang] || i18n.en;
+    document.getElementById("txtTitle").innerText = d.title;
+    document.getElementById("txtSubtitle").innerText = d.subtitle;
+    document.getElementById("txtNotice").innerHTML = d.notice;
+    document.getElementById("txtStepsTitle").innerText = d.stepsTitle;
+    document.getElementById("txtStep1").innerHTML = d.step1;
+    document.getElementById("txtStep2").innerHTML = d.step2;
+    document.getElementById("txtStep3").innerHTML = d.step3;
+    document.getElementById("txtStep4").innerHTML = d.step4;
+    document.getElementById("txtStep5").innerHTML = d.step5;
+    document.getElementById("txtInterfaceTitle").innerText = d.interfaceTitle;
+    document.getElementById("placeholderText").innerText = d.placeholder;
+    document.getElementById("btnInfo").innerText = d.btnInfo;
+    document.getElementById("btnCapture").innerText = d.btnCapture;
+    document.getElementById("lblDevice").innerText = d.lblDevice;
+    document.getElementById("lblSerial").innerText = d.lblSerial;
+    document.getElementById("lblQuality").innerText = d.lblQuality;
+    document.getElementById("lblNfiq").innerText = d.lblNfiq;
+    document.getElementById("lblIso").innerText = d.lblIso;
+    document.getElementById("txtLogTitle").innerText = d.logTitle;
+    document.getElementById("statusBadge").innerText = d.statusReady;
+    document.getElementById("txtFooterLegal").innerText = d.footerLegal;
+
+    // Toggle active class on buttons
+    document.querySelectorAll(".lang-btn").forEach(function(b) { b.classList.remove("active"); });
+    event.target.classList.add("active");
+  }
 
   function log(msg) {
     var b = document.getElementById("logBox");
