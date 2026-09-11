@@ -3,8 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mantra MFS100 Web Bridge Tester</title>
+  
+  <!-- Primary Meta Tags -->
+  <title>Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture</title>
+  <meta name="title" content="Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture">
+  <meta name="description" content="Live web tester and local HTTP service bridge for Mantra MFS100 optical fingerprint scanner on Google Chrome. Tested & working on Windows 11 for government portals, e-registration, and custom web apps.">
+  <meta name="keywords" content="Mantra MFS100, MFS100 Web SDK, Chrome Fingerprint Scanner, Maharashtra IGR Thumb Capture, Biometric Web Bridge, MFS100 Port 8004, Windows 11 Biometric, ISO 19794-2, qalqi.com">
+  <meta name="author" content="qalqi.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://qalqi.github.io/mfs100client/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://qalqi.github.io/mfs100client/">
+  <meta property="og:title" content="Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture">
+  <meta property="og:description" content="Connect Google Chrome directly to Mantra MFS100 biometric scanner on Windows 11. Real-time thumb capture, live preview, and ISO 19794-2 template generation.">
+  <meta property="og:image" content="https://qalqi.github.io/mfs100client/assets/banner.jpg">
+  <meta property="og:image:width" content="1792">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:site_name" content="qalqi.com">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://qalqi.github.io/mfs100client/">
+  <meta name="twitter:title" content="Mantra MFS100 Web Bridge Live Tester | Chrome Biometric Capture">
+  <meta name="twitter:description" content="Live Chrome biometric capture bridge for Mantra MFS100 on Windows 11. Real BMP & ISO 19794-2 templates.">
+  <meta name="twitter:image" content="https://qalqi.github.io/mfs100client/assets/banner.jpg">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Mantra MFS100 Web Bridge",
+    "operatingSystem": "Windows 11, Windows 10",
+    "applicationCategory": "DeveloperApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "qalqi.com",
+      "url": "https://qalqi.com"
+    },
+    "description": "A lightweight local HTTP bridge allowing Google Chrome to communicate with Mantra MFS100 optical fingerprint scanners on Windows 11.",
+    "url": "https://qalqi.github.io/mfs100client/"
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
   <style>
     :root {
       --bg: #0d1117;
@@ -17,6 +68,7 @@
       --btn-bg: #238636;
       --btn-hover: #2ea043;
       --warning: #d29922;
+      --brand: #58a6ff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -39,6 +91,8 @@
       margin-bottom: 24px;
       border: 1px solid var(--border);
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
     }
     .header {
       text-align: center;
@@ -160,17 +214,32 @@
     }
     .footer {
       text-align: center;
-      font-size: 12px;
+      font-size: 13px;
       color: #8b949e;
-      margin-top: 20px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #21262d;
+      line-height: 1.8;
     }
-    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .brand-highlight {
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <img src="assets/banner.jpg" class="banner" alt="Mantra MFS100 Chrome Web Bridge" />
+  <img src="assets/banner.jpg" class="banner" alt="Mantra MFS100 Chrome Web Bridge - Live Biometric Capture on Windows 11" />
 
   <div class="header">
     <h1>Mantra MFS100 Web Bridge Live Tester</h1>
@@ -189,7 +258,7 @@
       <div>
         <div class="preview-box" id="previewBox">
           <span class="preview-placeholder" id="placeholderText">Captured live fingerprint image will appear here</span>
-          <img id="imgFinger" style="display:none;" alt="Captured Fingerprint" />
+          <img id="imgFinger" style="display:none;" alt="Captured Live Fingerprint Preview" />
         </div>
         <div style="text-align: center;">
           <span class="status-badge status-ready" id="statusBadge">Bridge: Ready on Port 8004</span>
@@ -217,14 +286,17 @@
     <div class="log-box" id="logBox">Waiting for action... (Make sure start.bat is running locally)</div>
   </div>
 
-  <div class="footer">
+  <footer class="footer">
     <p>
-      Open Source Project &bull; 
+      Developed &amp; Maintained by <a href="https://qalqi.com" target="_blank" class="brand-highlight">qalqi.com</a> &bull;
       <a href="https://github.com/qalqi/mfs100client" target="_blank">GitHub Repository</a> &bull; 
       <a href="https://github.com/qalqi/mfs100client/issues" target="_blank">Report an Issue</a> &bull; 
       Licensed under MIT
     </p>
-  </div>
+    <p style="font-size: 11px; color: #484f58; margin-top: 4px;">
+      Not affiliated with Mantra Softech India Pvt. Ltd. or UIDAI. Provided AS IS with no warranty or liability.
+    </p>
+  </footer>
 </div>
 
 <script>

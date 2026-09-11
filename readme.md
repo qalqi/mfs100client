@@ -6,7 +6,8 @@
 
 A lightweight, zero-dependency local HTTP service bridge that allows modern web browsers (Google Chrome, Microsoft Edge, Brave, Firefox) to communicate directly with the **Mantra MFS100 (L0)** optical fingerprint scanner for web applications and government portals (such as Maharashtra IGR e-filing `frmPhotoThumbCapture.aspx`).
 
-🌐 **Live GitHub Pages Web Tester:** **[https://qalqi.github.io/mfs100client/](https://qalqi.github.io/mfs100client/)**
+🌐 **Live Web Tester:** **[https://qalqi.github.io/mfs100client/](https://qalqi.github.io/mfs100client/)**  
+🚀 **Developed & Maintained by:** **[qalqi.com](https://qalqi.com)**
 
 ---
 
@@ -25,7 +26,7 @@ A lightweight, zero-dependency local HTTP service bridge that allows modern web 
 > [!IMPORTANT]
 > **READ CAREFULLY BEFORE USING THIS SOFTWARE:**
 > 
-> 1. **No Affiliation:** This project is an independent, community-driven open-source initiative. It is **NOT** affiliated with, endorsed by, sponsored by, or associated in any way with **Mantra Softech India Pvt. Ltd.**, **UIDAI**, the **Government of Maharashtra**, or any government department or authority.
+> 1. **No Affiliation:** This project is an independent, community-driven open-source initiative developed by [qalqi.com](https://qalqi.com). It is **NOT** affiliated with, endorsed by, sponsored by, or associated in any way with **Mantra Softech India Pvt. Ltd.**, **UIDAI**, the **Government of Maharashtra**, or any government department or authority.
 > 2. **"AS IS" - No Warranty:** This software is provided strictly on an **"AS IS"** and **"AS AVAILABLE"** basis, without warranty of any kind, express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement.
 > 3. **No Liability:** Under no circumstances and under no legal theory (whether in contract, tort, negligence, strict liability, or otherwise) shall the authors, contributors, or copyright holders be liable for any direct, indirect, incidental, special, exemplary, punitive, or consequential damages (including, without limitation, loss of business, loss of data, identity or authentication discrepancies, administrative fines, legal disputes, system downtime, or financial loss) arising out of or in connection with the use, misuse, or inability to use this software.
 > 4. **User Responsibility & Regulatory Compliance:** You, as the end-user or integrator, assume full responsibility for complying with all applicable laws, data privacy regulations, biometric data handling rules, IT security policies, and terms of service of any third-party or governmental portals you interact with.
@@ -192,4 +193,4 @@ If you encounter any issues, bugs, or have questions while running this bridge o
 
 ## License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details. Built by [qalqi.com](https://qalqi.com).
